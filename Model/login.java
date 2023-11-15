@@ -15,4 +15,14 @@ public class login {
         }
         return verificado;
     }
+
+    public void changepriority(String usuario, String password, String plan) {
+        ArrayList<ArrayList<String>> users = FilesManager.readFilesCSV("users.csv");
+        for (ArrayList<String> user : users) {
+            if (user.get(0).equals(usuario) && user.get(1).equals(password)) {
+                user.set(2, plan);
+            }
+        }
+        FilesManager.writeFilesCSV("users.csv", users);
+    }
 }

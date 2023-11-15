@@ -5,7 +5,6 @@ public interface Interface {
     void Login();
     void Perfil();
     void prestamo();
-    void seleccion();
     void menu();
     
 }

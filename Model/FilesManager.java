@@ -24,11 +24,14 @@ public class FilesManager {
         return newT;
     }
 
-    public static void writeFilesCSV(String path, ArrayList<String> newT) {
+    public static void writeFilesCSV(String path, ArrayList<ArrayList<String>> newT) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
-            for (String word : newT) {
-                writer.write(word);
-                writer.write(",");
+            for (ArrayList<String> list : newT) {
+                for (String word : list) {
+                    writer.write(word);
+                    writer.write(",");
+                }
+                writer.write("\n");
             }
         } catch (IOException e) {
             e.printStackTrace();

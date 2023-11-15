@@ -1,10 +1,14 @@
 package View;
 import Model.Usuario;
+import Model.login;
+
 import java.util.Scanner;
 import Model.Plan;
+import Model.Prestamo;
 
 public class MenuUi implements Interface {
     Scanner sc = new Scanner(System.in);
+        login login = new login();
 
     @Override
     public void menu() {
@@ -68,27 +72,47 @@ public class MenuUi implements Interface {
 
     @Override
     public void Login() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Login'");
+        System.out.print("Ingrese su nombre de usuario: ");
+        String username = sc.next();
+        System.out.print("Ingrese su contraseña: ");
+        String password = sc.next();
+        if (login.verify(username, password)) {
+            System.out.println("¡Bienvenido!");
+        } else {
+            System.out.println("Usuario o contraseña incorrectos.");
+        }
     }
 
     @Override
     public void Perfil() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Perfil'");
+        System.out.print("Ingrese su nombre de usuario: ");
+        String username = sc.next();
+        System.out.print("Ingrese su contraseña: ");
+        String password = sc.next();
+        System.out.print("Ingrese su plan (BASE o PREMIUM): ");
+        String planInput = sc.next();
+        login.changepriority(username, password, planInput);
     }
 
     @Override
     public void prestamo() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'prestamo'");
+        System.out.print("Ingrese su nombre de usuario: ");
+        String username = sc.next();
+        System.out.print("Ingrese el tipo de producto: ");
+        String tipo = sc.next();
+        System.out.print("ingrese los dias de prestamo: ");
+        String dias = sc.next();
+        System.out.print("ingrese la hora de entrega: ");
+        String hora = sc.next();
+        System.out.print("ingrese la sucursal de entrega: ");
+        String sucursal = sc.next();
+        System.out.print("ingrese la hora de recibir: ");
+        String hora2 = sc.next();
+        Prestamo.GuardarPrestamo(username, tipo, dias, hora, sucursal, hora2);
+
     }
 
-    @Override
-    public void seleccion() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'seleccion'");
-    }
+
 
 
     
