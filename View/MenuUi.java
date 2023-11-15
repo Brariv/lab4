@@ -1,6 +1,7 @@
 package View;
-
+import Model.Usuario;
 import java.util.Scanner;
+import Model.Plan;
 
 public class MenuUi implements Interface {
     Scanner sc = new Scanner(System.in);
@@ -25,7 +26,7 @@ public class MenuUi implements Interface {
                     Registro();
                     break;
                 case 2:
-                    Login();
+                    seleccion();
                     break;
                 case 3:
                     prestamo();
@@ -44,9 +45,26 @@ public class MenuUi implements Interface {
 
     @Override
     public void Registro() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'Registro'");
+        System.out.print("Ingrese un nombre de usuario: ");
+        String username = sc.next();
+
+        System.out.print("Ingrese una contraseña: ");
+        String password = sc.next();
+
+        System.out.print("Ingrese su plan (BASE o PREMIUM): ");
+        String planInput = sc.next();
+
+        Plan plan;
+        try {
+            plan = Plan.valueOf(planInput.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Plan no válido. Se asignará el plan BASE por defecto.");
+            plan = Plan.BASE;
+        }
+
+        Usuario nuevoUsuario = new Usuario(username, password, plan);
     }
+
 
     @Override
     public void Login() {
@@ -71,4 +89,9 @@ public class MenuUi implements Interface {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'seleccion'");
     }
+
+
+    
+
+
 }
